@@ -1,0 +1,100 @@
+// James Mathew
+// tree.h
+
+
+#ifndef TREE_H
+#define TREE_H
+
+class Tree
+{
+	
+	public:
+		//Constructor, creates  a tree object using val
+		Tree(int val);
+		
+		//copy constructor
+		Tree(const Tree& tree); 
+		
+		//overloaded assignment operator
+		Tree& operator = (const Tree& tree); 
+		
+		~Tree(); //destructor
+		
+		//insert val into the tree (no duplicate values)
+		bool insertVal(int val); 
+		
+		//looks for val in the tree and returns bool if finds val, else 
+		// returns false
+		bool findVal(int val); 
+		
+		//find the smallest value in the tree and returns the value
+		int min();
+		
+		//find the biggest value in the tree and returns the value
+		int max(); 
+		
+		
+		//returns the length from the root of the tree to the furthest leaf
+		int height(); 
+		
+		//prints values in the tree to the screen in preorder. 
+		void printPreOrder();
+		
+		//prints values in the tree to the screen inorder.
+		void printInOrder(); 
+		
+		//removes val from the tree
+		void remove(int val);
+
+	private:
+		//struct to use as the node of the tree
+		struct TreeNode
+		{
+			int data; // stores vales in the node
+			TreeNode* left; // left leaf/branch
+			TreeNode* right; // right leaf/branch
+		};
+		
+		int maxHeight; //length from the root of the tree to the furthest leaf
+		
+		// private method to delete the hole tree.
+		void deleteTree(TreeNode*& root);
+		
+		TreeNode* root; // root of the tree
+		
+		//private method to insert val into the tree, returns true in insert 
+		//	sucessful
+		bool insertVal(TreeNode*& root, int val);
+		
+		// looks for val in the tree and returns true if finds it, else false
+		bool findVal(TreeNode* root, int val);
+		
+		// finds the min in the tree and returns it
+		int min(TreeNode* root);
+		
+		//find the biggest value in the tree and returns the value
+		int max(TreeNode* root);
+		
+		//returns the length from the root of the tree to the furthest leaf
+		void height(TreeNode* root, int maxH);
+		
+		//prints values in the tree to the screen in preorder.
+		void printPreOrder(TreeNode* root);
+		
+		//prints values in the tree to the screen inorder.
+		void printInOrder(TreeNode* root);
+		
+		// makes an exact copy of tree r and assigns it to current tree
+		TreeNode* makeCopy(TreeNode* r);
+		
+		// finds the node above the node with value k
+		TreeNode* findParent(TreeNode* r, int k);
+		
+		// deletes the node and everything below it.
+		void makeDeletion(TreeNode*& nodePtr);
+		
+		
+		
+};
+
+#endif
